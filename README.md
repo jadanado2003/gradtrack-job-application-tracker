@@ -1,73 +1,90 @@
-# React + TypeScript + Vite
+# GradTrack 📋
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+> A clean, feature-rich tracker for graduate job applications — built with React, TypeScript, and Vite.
 
-Currently, two official plugins are available:
+![GradTrack Screenshot](./public/screenshot.png)
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+## ✨ Features
 
-## React Compiler
+| Feature | Details |
+|---|---|
+| **Add applications** | Log company, role, status, location, deadline, and notes |
+| **Edit inline** | Update any field directly on the card |
+| **Delete with confirmation** | Prevents accidental removal |
+| **Status badges** | Applied · Interview · Offer · Rejected — colour-coded at a glance |
+| **Stats dashboard** | Live count of applications per stage |
+| **Search** | Filter by company, role, or location |
+| **Filter by status** | Quickly view applications at any stage |
+| **Sort** | By date added, company name, or status |
+| **Deadline tracking** | Highlights deadlines that are approaching or overdue |
+| **Export to CSV** | Download all your data in one click |
+| **Dark / Light mode** | Respects system preference, toggleable manually |
+| **Persistent storage** | Data is saved to `localStorage` — no backend needed |
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+## 🚀 Getting Started
 
-## Expanding the ESLint configuration
+### Prerequisites
+- Node.js 18+
+- npm / pnpm / yarn
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+### Installation
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+```bash
+# Clone the repository
+git clone https://github.com/your-username/gradtrack.git
+cd gradtrack
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+# Install dependencies
+npm install
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+# Start the dev server
+npm run dev
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+Open [http://localhost:5173](http://localhost:5173) in your browser.
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+### Build for production
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+```bash
+npm run build
+npm run preview
 ```
+
+## 🛠 Tech Stack
+
+- **React 19** — UI framework
+- **TypeScript** — Type safety throughout
+- **Vite** — Fast bundler and dev server
+- **CSS Custom Properties** — Design token system, no extra dependencies
+- **localStorage** — Client-side persistence, zero backend
+
+## 📁 Project Structure
+
+```
+src/
+├── hooks/
+│   └── useJobs.ts          # Core state logic: add, update, delete, export, stats
+├── components/
+│   ├── StatsBar.tsx         # Application count by status
+│   ├── JobForm.tsx          # Add new application form with validation
+│   ├── Controls.tsx         # Search, filter, sort controls
+│   ├── JobCard.tsx          # Individual application card with inline editing
+│   ├── JobList.tsx          # Filtered + sorted list with empty states
+│   └── ConfirmModal.tsx     # Delete confirmation dialog
+├── types.ts                 # Shared TypeScript interfaces
+├── App.tsx                  # Root component, theme management
+├── App.css                  # All component styles
+└── index.css                # Global design tokens + reset
+```
+
+## 🎨 Design Decisions
+
+- **No UI library** — custom CSS gives full control over the aesthetic and keeps the bundle lean
+- **`crypto.randomUUID()`** — more robust than `Date.now()` for generating IDs
+- **Custom `useJobs` hook** — separates all data logic from the UI layer
+- **Lazy localStorage initialiser** — avoids reading from storage on every render
+- **Optimistic UI** — updates feel instant; no loading states needed
+
+## 📄 Licence
+
+MIT © 2025 — feel free to fork and adapt.

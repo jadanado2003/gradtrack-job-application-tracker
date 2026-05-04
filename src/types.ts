@@ -6,4 +6,11 @@ export interface Job {
   role: string;
   status: JobStatus;
   date: string;
+  deadline?: string;
+  location?: string;
+  notes?: string;
 }
+
+export type SortField = "date" | "company" | "status";
+export type SortOrder = "asc" | "desc";
+export type StatusFilter = JobStatus | "All";
