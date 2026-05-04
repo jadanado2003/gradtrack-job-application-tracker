@@ -31,7 +31,7 @@
 
 ```bash
 # Clone the repository
-git clone https://github.com/your-username/gradtrack.git
+git clone https://github.com/jadanado2003/gradtrack-job-application-tracker.git
 cd gradtrack
 
 # Install dependencies
